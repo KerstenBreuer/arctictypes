@@ -12,9 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Test dummy."""
+"""Test the standard converters."""
+
+import pytest
+
+from arctictypes._converters import STANDARD_CONVERTERS
+from arctictypes._resolve import sort_and_deduplicate_converters
 
 
-def test_dummy():
-    """A very simple example test."""
-    pass
+@pytest.mark.parametrize("converters", [STANDARD_CONVERTERS])
+def test_converter_sequences(converters):
+    """Make sure that all builtin converters are sorted and that they only contain one
+    converter for each input type.
+    """
+    expected_converters, _ = sort_and_deduplicate_converters(converters)
+    assert expected_converters == converters

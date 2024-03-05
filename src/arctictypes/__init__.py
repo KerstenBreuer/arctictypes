@@ -16,4 +16,14 @@
 
 from importlib.metadata import version
 
+from ._converters import STANDARD_CONVERTERS, Converter
+from ._freeze import ConverterNotFoundError, freeze
+
+__all__ = [
+    "ConverterNotFoundError",
+    "freeze",
+    "STANDARD_CONVERTERS",
+    "Converter",
+]
+
 __version__ = version(__package__)
